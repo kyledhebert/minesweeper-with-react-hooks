@@ -1,0 +1,24 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.mine-field {
+  width: 400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(8, 50px);
+  grid-template-rows: repeat(8, 50px);
+}
+
+.mine {
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.mine-revealed {
+  background-color: #9e9e9e;
+}
