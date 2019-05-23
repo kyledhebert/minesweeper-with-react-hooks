@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import classNames from "classnames";
 
 import { GameContext } from "./index";
@@ -32,7 +32,7 @@ export const Mine = ({ mine }) => {
     const minefield = updateMinefield(state.minefield, revealed);
 
     dispatch({ type: "setgamewon", payload: true });
-    dispatch({ type: "updateminefield", payload: minefield });
+    dispatch({ type: "setminefield", payload: minefield });
   };
 
   const handleClick = () => {
@@ -40,23 +40,17 @@ export const Mine = ({ mine }) => {
       dispatch({ type: "setgameover", payload: true });
     } else if (!mine.neighbors) {
       mine.revealed = true;
-
       const revealedNeighbors = revealNeighbors(state.minefield, mine);
       const minefield = updateMinefield(state.minefield, revealedNeighbors);
-
-      dispatch({ type: "updateminefield", payload: minefield });
-
-      if (isGameWon()) {
-        handleGameWon();
-      }
+      dispatch({ type: "setminefield", payload: minefield });
     } else if (mine.neighbors) {
       mine.revealed = true;
       const minefield = updateMinefield(state.minefield, [mine]);
-      dispatch({ type: "updateminefield", payload: minefield });
+      dispatch({ type: "setminefield", payload: minefield });
+    }
 
-      if (isGameWon()) {
-        handleGameWon();
-      }
+    if (isGameWon()) {
+      handleGameWon();
     }
   };
 
@@ -74,8 +68,8 @@ export const Mine = ({ mine }) => {
     }
 
     mine.flagged
-      ? dispatch({ type: "decrementflags" })
-      : dispatch({ type: "incrementflags" });
+      ? dispatch({ type: "setflags", payload: state.flags - 1 })
+      : dispatch({ type: "setflags", payload: state.flags + 1 });
 
     mine.flagged = !mine.flagged;
 
