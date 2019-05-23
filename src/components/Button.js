@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
-import { GameContext } from "./GameContext";
+
+import { GameContext } from "./index";
+
 import { generateMineField } from "../utils";
 
 export const Button = () => {
@@ -10,7 +12,7 @@ export const Button = () => {
     const minefield = generateMineField();
     const mines = minefield.filter(mine => mine.bomb === true).length;
 
-    dispatch({ type: "updateminefield", payload: minefield });
+    dispatch({ type: "setminefield", payload: minefield });
     dispatch({ type: "setmines", payload: mines });
     dispatch({ type: "setflags", payload: 0 });
 

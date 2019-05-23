@@ -15,7 +15,7 @@ initialState.mines = initialState.minefield.filter(
 
 const gameReducer = (state, action) => {
   switch (action.type) {
-    case "updateminefield":
+    case "setminefield":
       return { ...state, minefield: action.payload };
     case "setmines":
       return { ...state, mines: action.payload };
@@ -25,10 +25,6 @@ const gameReducer = (state, action) => {
       return { ...state, isGameWon: action.payload };
     case "setflags":
       return { ...state, flags: action.payload };
-    case "incrementflags":
-      return { ...state, flags: state.flags + 1 };
-    case "decrementflags":
-      return { ...state, flags: state.flags - 1 };
     default:
       return state;
   }
