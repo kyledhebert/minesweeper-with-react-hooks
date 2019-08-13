@@ -58,7 +58,7 @@ export const Mine = ({ mine }) => {
     // don't show context menu
     e.preventDefault();
 
-    if (mine.revealed) {
+    if (mine.revealed && !mine.flagged) {
       return;
     }
 
